@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Before Midnight Mall</title>
+    <meta name="description" content="Before Midnight Mall brings curated art, refreshments, and evening essentials together in one refined shopping experience." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <div class="brand">
+          <span class="brand-mark">B</span>
+          <span>Before Midnight Mall</span>
+        </div>
+
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="#featured">Featured</a>
+          <a href="#collections">Collections</a>
+          <a href="#reviews">Reviews</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="account-shell">
+          <span id="customerStatus" class="customer-status">Guest</span>
+          <button id="guestLogoutBtn" class="cart-button secondary-logout" type="button" style="display: none;">Exit</button>
+        </div>
+
+        <button id="cartToggleButton" class="cart-button" type="button" aria-label="Open shopping cart">
+          <span>Cart</span>
+          <span id="cartCount" class="cart-count">0</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Curated for better living</p>
+            <h1>Thoughtful products for everyday rituals.</h1>
+            <p class="hero-text">
+              Discover elevated essentials that bring comfort, calm, and style into your home.
+            </p>
+            <div class="hero-actions">
+              <a href="#featured" class="primary-btn">Shop now</a>
+              <a href="#collections" class="secondary-btn">Explore collections</a>
+            </div>
+            <ul class="hero-meta">
+              <li>Free shipping on orders over TZS 150,000</li>
+              <li>30-day returns</li>
+            </ul>
+          </div>
+
+          <div class="hero-visual" aria-label="Featured product showcase">
+            <div class="hero-card feature-card">
+              <img src="https://images.unsplash.com/photo-1517705008128-361805f42e86?auto=format&fit=crop&w=900&q=80" alt="Elegant featured product" />
+              <div class="feature-card-copy">
+                <span>Best seller</span>
+                <h2>Black Devil with a Bright Smile</h2>
+                <p>TZS 10,000</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="trust-bar">
+        <div class="container trust-grid">
+          <div>Free shipping</div>
+          <div>Small-batch design</div>
+          <div>Premium materials</div>
+          <div>Secure checkout</div>
+        </div>
+      </section>
+
+      <section class="welcome-spotlight">
+        <div class="container welcome-wrap">
+          <div class="welcome-photo-frame welcome-night-scene" aria-label="Night scene illustration">
+            <div class="night-sky-glow"></div>
+            <div class="moon"></div>
+            <div class="stars"></div>
+          </div>
+
+          <div class="welcome-copy">
+            <p class="eyebrow">Welcome to Before Midnight Mall</p>
+            <h2>Good evening, and thank you for being here.</h2>
+            <p>
+              We are delighted to welcome you to a quieter, more meaningful shopping experience where thoughtful
+              living, premium design, and immersive details come together beautifully.
+            </p>
+            <p>
+              Explore pieces chosen to make everyday moments feel more intentional, more comforting, and more special.
+            </p>
+            <a href="#featured" class="primary-btn">Explore the collection</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="featured" class="catalog">
+        <div class="container section-header">
+          <div>
+            <p class="eyebrow">Featured products</p>
+            <h2>Our best-loved essentials</h2>
+          </div>
+          <a href="#collections" class="text-link">Browse all</a>
+        </div>
+
+        <div id="productGrid" class="product-grid" aria-live="polite"></div>
+      </section>
+
+      <section id="collections" class="collections">
+        <div class="container section-header">
+          <div>
+            <p class="eyebrow">Shop by category</p>
+            <h2>Art & refreshments for the evening ritual</h2>
+          </div>
+        </div>
+
+        <div class="container collection-grid">
+          <article class="collection-card">
+            <div class="collection-image image-one"></div>
+            <div class="collection-copy">
+              <h3>Art & Objects</h3>
+              <p>Curated pieces that add mood, story, and atmosphere to your space.</p>
+            </div>
+          </article>
+
+          <article class="collection-card">
+            <div class="collection-image image-two"></div>
+            <div class="collection-copy">
+              <h3>Refreshments</h3>
+              <p>Thoughtful sips and midnight rituals made for slower evenings.</p>
+            </div>
+          </article>
+
+          <article class="collection-card">
+            <div class="collection-image image-three"></div>
+            <div class="collection-copy">
+              <h3>Studio Editions</h3>
+              <p>Limited collections for cozy, intentional living and gifting.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="reviews" class="reviews">
+        <div class="container section-header narrow">
+          <div>
+            <p class="eyebrow">Customer love</p>
+            <h2>People come back for the feeling</h2>
+          </div>
+        </div>
+
+        <div class="container review-grid">
+          <blockquote>
+            “The quality is outstanding and the packaging feels premium. It instantly elevated my desk.”
+            <footer>— Maya R.</footer>
+          </blockquote>
+          <blockquote>
+            “I bought the candle and diffuser set for a gift, and it was such a beautiful experience.”
+            <footer>— Jordan T.</footer>
+          </blockquote>
+          <blockquote>
+            “Everything feels thoughtfully designed. It’s exactly the kind of brand I want to support.”
+            <footer>— Lena P.</footer>
+          </blockquote>
+        </div>
+      </section>
+    </main>
+
+    <aside class="cart-panel" id="cartPanel" aria-label="Shopping cart">
+      <div class="cart-header">
+        <h3>Your cart</h3>
+        <button class="close-cart" aria-label="Close cart">×</button>
+      </div>
+
+      <div id="cartItems" class="cart-items"></div>
+
+      <div class="cart-summary">
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="subtotal">TZS 0</span>
+        </div>
+        <div class="summary-row">
+          <span>Shipping</span>
+          <span id="shipping">TZS 0</span>
+        </div>
+        <div class="summary-row total-row">
+          <span>Total</span>
+          <span id="total">TZS 0</span>
+        </div>
+        <button class="checkout-btn">Proceed to checkout</button>
+      </div>
+    </aside>
+
+    <div class="checkout-modal-backdrop" id="checkoutModalBackdrop" aria-hidden="true">
+      <div class="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkoutModalTitle">
+        <div class="modal-header">
+          <div>
+            <p class="eyebrow">Secure order</p>
+            <h3 id="checkoutModalTitle">Checkout details</h3>
+          </div>
+          <button class="close-cart close-checkout" aria-label="Close checkout">×</button>
+        </div>
+
+        <form id="checkoutForm" class="checkout-form">
+          <div class="form-grid">
+            <label>
+              Full name
+              <input type="text" name="fullName" placeholder="Your full name" required />
+            </label>
+            <label>
+              Email
+              <input type="email" name="email" placeholder="you@example.com" required />
+            </label>
+            <label class="full-width">
+              Street address
+              <input type="text" name="address" placeholder="123 Market Street" required />
+            </label>
+            <label>
+              City
+              <input type="text" name="city" placeholder="Dar es Salaam" required />
+            </label>
+            <label>
+              Postal code
+              <input type="text" name="postalCode" placeholder="12345" required />
+            </label>
+            <label>
+              Phone number
+              <input type="tel" name="phone" placeholder="+255 712 345 678" required />
+            </label>
+            <label class="full-width">
+              Exact delivery location
+              <input type="text" name="location" placeholder="Mikocheni, near the station" required />
+            </label>
+          </div>
+
+          <div class="checkout-summary-box">
+            <span>Estimated total</span>
+            <strong id="checkoutTotal">TZS 0</strong>
+          </div>
+
+          <button type="submit" class="primary-btn checkout-submit">Place order</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

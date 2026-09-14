@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Before Midnight Mall | Access</title>
+    <meta name="description" content="Enter Before Midnight Mall and discover curated evening essentials." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="access.css" />
+  </head>
+  <body>
+    <div class="background-glow"></div>
+    <main class="access-shell">
+      <section class="access-panel">
+        <div class="brand-row">
+          <div class="brand-mark">B</div>
+          <div>
+            <p class="eyebrow">Private access</p>
+            <h1>Before Midnight Mall</h1>
+          </div>
+        </div>
+
+        <div class="hero-copy">
+          <p>
+            Discover premium art, refined refreshments, and elevated essentials curated for calm, comfort,
+            and late-evening indulgence.
+          </p>
+        </div>
+
+        <form id="accessForm" class="access-form">
+          <label>
+            Full name
+            <input type="text" id="visitorName" name="visitorName" placeholder="Your full name" required />
+          </label>
+
+          <label>
+            Email address
+            <input type="email" id="visitorEmail" name="visitorEmail" placeholder="you@example.com" required />
+          </label>
+
+          <label>
+            Access type
+            <select id="accessType" name="accessType">
+              <option value="Guest Pass">Guest Pass</option>
+              <option value="Member Access">Member Access</option>
+              <option value="Private Entry">Private Entry</option>
+            </select>
+          </label>
+
+          <button type="submit" class="primary-btn">Enter the mall</button>
+          <p id="accessMessage" class="access-message" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="feature-panel" aria-label="Mall preview">
+        <div class="feature-card feature-main">
+          <span class="chip">Curated</span>
+          <h2>Evening essentials for thoughtful living</h2>
+          <p>Elevated pieces designed to transform everyday rituals into moments worth keeping.</p>
+        </div>
+
+        <div class="feature-meta">
+          <div>
+            <strong>8</strong>
+            <span>Featured products</span>
+          </div>
+          <div>
+            <strong>3</strong>
+            <span>Curated categories</span>
+          </div>
+          <div>
+            <strong>24/7</strong>
+            <span>Customer access</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="access.js"></script>
+  </body>
+</html>
