@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>After Midnight Mall | Login</title>
+    <meta
+      name="description"
+      content="Secure login for After Midnight Mall."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body>
+    <div class="auth-scene">
+      <button id="lampToggle" class="lamp-toggle" type="button" aria-pressed="false">
+        <div class="lamp-figure" aria-hidden="true">
+          <span class="lamp-shadow"></span>
+          <span class="lamp-shade"></span>
+          <span class="lamp-stem"></span>
+          <span class="lamp-base"></span>
+          <span class="lamp-glow"></span>
+        </div>
+        <span class="lamp-label">Turn on lamp</span>
+      </button>
+
+      <div class="login-card">
+        <div class="card-head">
+          <span class="brand-mark">A</span>
+          <span class="brand-name">After Midnight Mall</span>
+        </div>
+
+        <a class="admin-link" href="/admin.html" target="_blank">Owner verification panel</a>
+
+        <div class="mode-toggle" aria-label="Authentication mode switcher">
+          <button type="button" class="mode-btn active" data-mode="register">Register</button>
+          <button type="button" class="mode-btn" data-mode="login">Login</button>
+        </div>
+
+        <form class="register-form active" id="registerForm" novalidate>
+          <div class="field-group">
+            <label for="registerEmail">Email</label>
+            <input
+              id="registerEmail"
+              name="registerEmail"
+              type="email"
+              inputmode="email"
+              autocomplete="email"
+              placeholder="you@example.com"
+              required
+            />
+          </div>
+
+          <div class="field-group">
+            <label for="registerPassword">Create password</label>
+            <div class="password-wrap">
+              <input
+                id="registerPassword"
+                name="registerPassword"
+                type="password"
+                minlength="8"
+                autocomplete="new-password"
+                placeholder="Create a password"
+                required
+              />
+              <button type="button" class="toggle-register-password" aria-label="Show password">Show</button>
+            </div>
+          </div>
+
+          <div id="registerError" class="form-message error" aria-live="polite"></div>
+          <button type="submit" class="primary-btn alt">Register for verification</button>
+        </form>
+
+        <form class="login-form" id="loginForm" novalidate>
+          <div class="field-group">
+            <label for="loginEmail">Email</label>
+            <input
+              id="loginEmail"
+              name="loginEmail"
+              type="email"
+              inputmode="email"
+              autocomplete="email"
+              placeholder="you@example.com"
+              required
+            />
+          </div>
+
+          <div class="field-group">
+            <label for="loginPassword">Password</label>
+            <div class="password-wrap">
+              <input
+                id="loginPassword"
+                name="loginPassword"
+                type="password"
+                minlength="8"
+                autocomplete="current-password"
+                placeholder="Enter password"
+                required
+              />
+              <button type="button" class="toggle-password" aria-label="Show password">Show</button>
+            </div>
+          </div>
+
+          <div id="loginError" class="form-message error" aria-live="polite"></div>
+          <button type="submit" class="primary-btn">Login</button>
+        </form>
+
+      </div>
+    </div>
+
+    <script src="login.js"></script>
+  </body>
+</html>

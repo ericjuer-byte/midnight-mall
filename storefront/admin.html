@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>After Midnight Mall | Owner Verification</title>
+    <style>
+      :root {
+        --bg: #0f1115;
+        --bg-2: #171b21;
+        --card: rgba(20, 24, 30, 0.9);
+        --line: rgba(255,255,255,0.08);
+        --text: #f3efe8;
+        --muted: #b6b0a7;
+        --accent: #f2c98d;
+        --accent-strong: #f6d8a7;
+        --success: #6fe7b5;
+        --error: #f08c8c;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Inter, Arial, sans-serif;
+        background: radial-gradient(circle at top, #1f232a, var(--bg) 42%);
+        color: var(--text);
+        padding: 40px 24px;
+      }
+
+      .dashboard {
+        max-width: 960px;
+        margin: 0 auto;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 24px;
+      }
+
+      .brand {
+        font-size: 1.4rem;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+      }
+
+      .pill {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 0.55rem 0.8rem;
+        background: rgba(255,255,255,0.02);
+        color: var(--muted);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .panel {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+        padding: 24px;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 18px;
+        margin-bottom: 24px;
+      }
+
+      .stat {
+        background: rgba(255,255,255,0.02);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 18px;
+      }
+
+      .stat h3 {
+        margin: 0 0 12px;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+      }
+
+      .stat strong {
+        font-size: 1.8rem;
+        letter-spacing: -0.05em;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        overflow: hidden;
+      }
+
+      th, td {
+        padding: 14px 12px;
+        text-align: left;
+        border-bottom: 1px solid var(--line);
+      }
+
+      th {
+        color: var(--muted);
+        font-size: 0.74rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .status {
+        display: inline-block;
+        padding: 0.35rem 0.65rem;
+        border-radius: 999px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .status.pending {
+        background: rgba(242, 201, 141, 0.12);
+        color: var(--accent-strong);
+      }
+
+      .status.approved {
+        background: rgba(111, 231, 181, 0.14);
+        color: var(--success);
+      }
+
+      .verify-btn,
+      .status-btn {
+        border: none;
+        border-radius: 10px;
+        padding: 0.55rem 0.8rem;
+        background: linear-gradient(135deg, var(--accent), #f9d9a0);
+        color: #1a1a1c;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      .status-select {
+        width: 100%;
+        background: rgba(255,255,255,0.02);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        color: var(--text);
+        padding: 0.45rem 0.5rem;
+      }
+
+      .empty-state {
+        color: var(--muted);
+        padding: 16px 0;
+      }
+
+      @media (max-width: 720px) {
+        .stats {
+          grid-template-columns: 1fr;
+        }
+
+        .topbar {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+
+        table {
+          display: block;
+          overflow-x: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dashboard">
+      <div class="topbar">
+        <div class="brand">After Midnight Mall</div>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div class="pill">Owner verification panel</div>
+          <button id="logoutButton" class="verify-btn" type="button" style="padding:0.5rem 0.75rem;">Logout</button>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <h3>Total users</h3>
+          <strong id="totalUsers">0</strong>
+        </div>
+        <div class="stat">
+          <h3>Pending</h3>
+          <strong id="pendingUsers">0</strong>
+        </div>
+        <div class="stat">
+          <h3>Approved</h3>
+          <strong id="approvedUsers">0</strong>
+        </div>
+        <div class="stat">
+          <h3>Orders</h3>
+          <strong id="totalOrders">0</strong>
+        </div>
+        <div class="stat">
+          <h3>Revenue</h3>
+          <strong id="totalRevenue">TZS 0</strong>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-bottom: 24px;">
+        <table>
+          <thead>
+            <tr>
+              <th>Email</th>
+              <th>Status</th>
+              <th>Created</th>
+              <th>Approval</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="userTableBody"></tbody>
+        </table>
+      </div>
+
+      <div class="panel">
+        <h2 style="margin-top: 0; margin-bottom: 18px;">Latest orders</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Order</th>
+              <th>Customer</th>
+              <th>Items</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th>Update</th>
+            </tr>
+          </thead>
+          <tbody id="orderTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      const API_BASE = window.location.protocol === 'file:' ? 'http://127.0.0.1:5000' : '';
+
+      async function fetchJson(url, options = {}) {
+        const response = await fetch(`${API_BASE}${url}`, {
+          headers: { 'Content-Type': 'application/json' },
+          ...options,
+        });
+
+        const body = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(body.error || 'Request failed');
+        return body;
+      }
+
+      async function ensureOwnerSession() {
+        try {
+          const status = await fetchJson('/api/owner/status');
+          if (!status.loggedIn) {
+            window.location.href = 'admin-login.html';
+            return false;
+          }
+          return true;
+        } catch (error) {
+          window.location.href = 'admin-login.html';
+          return false;
+        }
+      }
+
+      function formatDate(value) {
+        if (!value) return '—';
+        const date = new Date(value);
+        return Number.isNaN(date.getTime()) ? value : date.toLocaleString();
+      }
+
+      async function loadUsers() {
+        try {
+          const users = await fetchJson('/api/users');
+          const tbody = document.getElementById('userTableBody');
+
+          document.getElementById('totalUsers').textContent = users.length;
+          document.getElementById('pendingUsers').textContent = users.filter((user) => !user.verified).length;
+          document.getElementById('approvedUsers').textContent = users.filter((user) => user.verified).length;
+
+          if (!users.length) {
+            tbody.innerHTML = '<tr><td colspan="5" class="empty-state">No users yet.</td></tr>';
+            return;
+          }
+
+          tbody.innerHTML = users
+            .map((user) => `
+              <tr>
+                <td>${user.email}</td>
+                <td><span class="status ${user.verified ? 'approved' : 'pending'}">${user.verified ? 'Approved' : 'Pending'}</span></td>
+                <td>${formatDate(user.createdAt)}</td>
+                <td>${formatDate(user.approvedAt)}</td>
+                <td>
+                  ${user.verified ? '<span class="status approved">Done</span>' : `<button class="verify-btn" data-email="${user.email}">Verify</button>`}
+                </td>
+              </tr>
+            `)
+            .join('');
+
+          document.querySelectorAll('.verify-btn').forEach((button) => {
+            button.addEventListener('click', async () => {
+              const email = button.dataset.email;
+              try {
+                await fetchJson('/api/verify', {
+                  method: 'POST',
+                  body: JSON.stringify({ email }),
+                });
+                await Promise.all([loadUsers(), loadOrders()]);
+              } catch (error) {
+                alert(error.message || 'Could not verify this user.');
+              }
+            });
+          });
+        } catch (error) {
+          document.getElementById('userTableBody').innerHTML = '<tr><td colspan="5">Unable to load users.</td></tr>';
+        }
+      }
+
+      async function loadOrders() {
+        try {
+          const orders = await fetchJson('/api/orders');
+          const tbody = document.getElementById('orderTableBody');
+          const totalRevenue = orders.reduce((sum, order) => sum + Number(order.total || 0), 0);
+
+          document.getElementById('totalOrders').textContent = orders.length;
+          document.getElementById('totalRevenue').textContent = `TZS ${totalRevenue.toLocaleString()}`;
+
+          if (!orders.length) {
+            tbody.innerHTML = '<tr><td colspan="5" class="empty-state">No orders yet.</td></tr>';
+            return;
+          }
+
+          tbody.innerHTML = orders
+            .map((order) => {
+              const itemSummary = (order.items || []).map((item) => `${item.name} × ${item.quantity}`).join(', ');
+              return `
+                <tr>
+                  <td>#${order.id}</td>
+                  <td>${order.shippingName || order.customerEmail}</td>
+                  <td>${itemSummary || '—'}</td>
+                  <td>TZS ${Number(order.total || 0).toLocaleString()}</td>
+                  <td><span class="status ${order.status === 'queued' ? 'pending' : 'approved'}">${order.status}</span></td>
+                  <td>
+                    <select class="status-select" data-order-id="${order.id}">
+                      <option value="queued" ${order.status === 'queued' ? 'selected' : ''}>Queued</option>
+                      <option value="processing" ${order.status === 'processing' ? 'selected' : ''}>Processing</option>
+                      <option value="shipped" ${order.status === 'shipped' ? 'selected' : ''}>Shipped</option>
+                      <option value="delivered" ${order.status === 'delivered' ? 'selected' : ''}>Delivered</option>
+                    </select>
+                    <button class="status-btn" data-order-id="${order.id}" style="margin-top: 8px; width: 100%;">Update</button>
+                  </td>
+                </tr>
+              `;
+            })
+            .join('');
+
+          document.querySelectorAll('.status-btn').forEach((button) => {
+            button.addEventListener('click', async () => {
+              const orderId = button.dataset.orderId;
+              const select = document.querySelector(`.status-select[data-order-id="${orderId}"]`);
+              const status = select?.value;
+
+              if (!status) return;
+
+              try {
+                await fetchJson(`/api/orders/${orderId}/status`, {
+                  method: 'PATCH',
+                  body: JSON.stringify({ status }),
+                });
+                await loadOrders();
+              } catch (error) {
+                alert(error.message || 'Could not update order status.');
+              }
+            });
+          });
+        } catch (error) {
+          document.getElementById('orderTableBody').innerHTML = '<tr><td colspan="6">Unable to load orders.</td></tr>';
+        }
+      }
+
+      document.getElementById('logoutButton').addEventListener('click', async () => {
+        try {
+          await fetchJson('/api/owner/logout', {
+            method: 'POST',
+          });
+        } catch (error) {
+          // no-op; still redirect below
+        }
+        window.location.href = 'admin-login.html';
+      });
+
+      (async () => {
+        const authorized = await ensureOwnerSession();
+        if (!authorized) return;
+        await Promise.all([loadUsers(), loadOrders()]);
+        setInterval(async () => {
+          await Promise.all([loadUsers(), loadOrders()]);
+        }, 4000);
+      })();
+    </script>
+  </body>
+</html>
