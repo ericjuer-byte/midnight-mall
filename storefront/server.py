@@ -225,7 +225,7 @@ def send_order_confirmation_email(order_id: int, customer_email: str, shipping_n
 
 @app.route('/')
 def index_page():
-    return send_from_directory('.', 'index.html')
+    return send_from_directory('.', 'login.html')
 
 
 @app.route('/login.html')
