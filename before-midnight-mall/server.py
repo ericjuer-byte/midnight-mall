@@ -251,7 +251,7 @@ def create_order():
             return jsonify({'error': 'One or more products are invalid.'}), 400
         subtotal += float(product['price']) * int(item.get('quantity', 0) or 0)
 
-    shipping_fee = 0 if subtotal >= 150000 else 12000
+    shipping_fee = 0
     total = subtotal + shipping_fee
 
     with get_db() as conn:

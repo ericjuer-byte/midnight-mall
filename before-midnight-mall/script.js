@@ -225,7 +225,7 @@ function renderCart() {
     return total + product.price * item.quantity;
   }, 0);
 
-  const shipping = subtotal >= 150000 || subtotal === 0 ? 0 : 12000;
+  const shipping = 0;
   const total = subtotal + shipping;
 
   subtotalEl.textContent = `TZS ${subtotal.toLocaleString()}`;
